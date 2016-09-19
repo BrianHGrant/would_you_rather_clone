@@ -1,6 +1,5 @@
-<p>What would you rather?</p>
-
 <% @questions.each do |question| %>
-  <%= question.content %>
-  <%= question.answer_a %>
-  <%= question.answer_b %>
+  <h1>Would you rather </h1>
+  <%= question.a_answer %>
+  <%= question.b_answer %>
+<%end%>

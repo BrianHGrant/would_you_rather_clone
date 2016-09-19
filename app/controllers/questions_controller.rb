@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!, :except => [:index, :show]
+
   def index
     @questions = Question.order(:created_at)
   end
@@ -9,6 +11,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @question.user_id = current_user.id
     if @question.save
       flash[:notice] = "Save successful"
       redirect_to question_path(@question)
@@ -45,4 +48,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:content, :answer_a, :answer_b, :a_votes, :b_votes)
+    params.require(:question).permit(:a_answer, :b_answer, :a_votes, :b_votes)
+  end
+
+end

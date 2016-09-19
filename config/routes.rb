@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root :to => 'question#index'
+  devise_for :users
+  root :to => 'questions#index'
   resources :questions
 end
