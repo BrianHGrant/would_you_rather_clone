@@ -1,5 +1,13 @@
 <% @questions.each do |question| %>
   <h1>Would you rather </h1>
   <%= question.a_answer %>
+  <%=form_for question do |f| %>
+    <%= f.hidden_field :a_votes, :value => question.a_votes + 1 %>
+    <%= f.submit "Choose" %>
+  <%end%>
   <%= question.b_answer %>
+  <%=form_for question do |f| %>
+    <%= f.hidden_field :b_votes, :value => question.b_votes + 1 %>
+    <%= f.submit "Choose" %>
+  <%end%>
 <%end%>
