@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
+  helper ApplicationHelper
 
   def index
     @questions = Question.order(:created_at)
