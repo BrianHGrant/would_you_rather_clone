@@ -1,0 +1,2 @@
+$('#' + '<%= @question.id %>' +'_a').html('<%= vote_percentage(@question.a_votes, @question.b_votes) %>')
+$('#' + '<%= @question.id %>' +'_b').html('<%= vote_percentage(@question.b_votes, @question.a_votes) %>')

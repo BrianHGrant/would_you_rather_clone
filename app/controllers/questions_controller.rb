@@ -31,10 +31,14 @@ class QuestionsController < ApplicationController
   end
 
   def update
+
     @question = Question.find(params[:id])
     if @question.update(question_params)
       flash[:notice] = "Save successful"
-      redirect_to question_path(@question)
+      respond_to do |format|
+        format.html { redirect_to question_path(question) }
+        format.js
+      end
     else
       flash[:alert] = "Failed to save"
       render :edit
