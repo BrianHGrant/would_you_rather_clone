@@ -1,9 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
   helper ApplicationHelper
+  helper_method :sort_column, :sort_direction
 
   def index
-    @questions = Question.order(:created_at)
+
+    @questions = Question.order(sort_column + " " + sort_direction)
   end
 
   def new
@@ -50,6 +52,14 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def sort_column
+    Question.column_names.include?(params[:sort]) ? params[:sort] : "a_votes"
+  end
+
+  def sort_direction
+    %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "ASC"
+  end
 
   def question_params
     params.require(:question).permit(:a_answer, :b_answer, :a_votes, :b_votes)

@@ -1,3 +1,6 @@
+<%= sortable "a_votes", "A Team"%>
+<%= sortable "b_votes", "B Team"%>
+
 <% @questions.each do |question| %>
   <div id='<%= question.id %>'>
     <%= render 'question', question: question %>
