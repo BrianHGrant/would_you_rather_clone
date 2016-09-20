@@ -12,12 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 $(document).ready(function() {
   $("#question-list a").on("click", function() {
     $.getScript(this.href);
+    return false;
+  });
+  // $("#questions_search").submit(function() {
+  //   $.get(this.action, $(this).serialize(), null, "script");
+  //   return false;
+  // });
+  $("#questions_search").keyup(function() {
+    $.get($("#questions_search").attr("action"), $("#questions_search").serialize(), null, "script");
     return false;
   });
 });
