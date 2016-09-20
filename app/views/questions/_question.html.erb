@@ -1,15 +1,15 @@
 <h1>Would you rather </h1>
 <%= question.a_answer %>
+Number of a votes: <%= question.a_votes %>
 <p id='<%= question.id %>_a'><%= vote_percentage(question.a_votes, question.b_votes) %></p>
 <%= form_for question, remote: true do |f| %>
   <%= f.hidden_field :a_votes, :value => question.a_votes + 1 %>
   <%= f.button "Choose"%>
 <%end%>
-<%= question.a_votes %>
 <%= question.b_answer %>
+Number of b votes: <%= question.b_votes %>
 <p id='<%= question.id %>_b'><%= vote_percentage(question.b_votes, question.a_votes) %></p>
 <%= form_for question, remote: true do |f| %>
   <%= f.hidden_field :b_votes, :value => question.b_votes + 1 %>
   <%= f.button "Choose"%>
 <%end%>
-<%= question.b_votes %>

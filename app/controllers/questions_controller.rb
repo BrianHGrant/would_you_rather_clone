@@ -4,8 +4,8 @@ class QuestionsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-
-    @questions = Question.order(sort_column + " " + sort_direction)
+    @questions = Question.search(params[:search])
+    # @questions = Question.order(sort_column + " " + sort_direction)
   end
 
   def new

@@ -1,6 +1,14 @@
 <%= sortable "a_votes", "A Team"%>
 <%= sortable "b_votes", "B Team"%>
 
+<%= form_tag questions_path, method: 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+
 <% @questions.each do |question| %>
   <div id='<%= question.id %>'>
     <%= render 'question', question: question %>
