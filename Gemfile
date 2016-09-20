@@ -13,6 +13,8 @@ gem 'devise'
 gem 'paperclip', '~> 4.1'
 gem 'bootstrap-sass'
 gem 'simple_form'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'byebug', platform: :mri

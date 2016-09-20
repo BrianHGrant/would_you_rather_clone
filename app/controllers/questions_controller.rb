@@ -4,8 +4,11 @@ class QuestionsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @questions = Question.search(params[:search])
-    # @questions = Question.order(sort_column + " " + sort_direction)
+    @questions = Question.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
@@ -33,6 +36,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    @questions = Question.all
     @question = Question.find(params[:id])
     if @question.update(question_params)
       flash[:notice] = "Save successful"

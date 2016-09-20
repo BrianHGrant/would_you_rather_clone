@@ -1,7 +1,6 @@
-<%= sortable "a_votes", "A Team"%>
-<%= sortable "b_votes", "B Team"%>
-
 <%= form_tag questions_path, method: 'get' do %>
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
   <p>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", name: nil %>
@@ -9,8 +8,9 @@
 <% end %>
 
 
-<% @questions.each do |question| %>
-  <div id='<%= question.id %>'>
-    <%= render 'question', question: question %>
-  </div>
-<%end%>
+<div id="question-list">
+  
+  <%= render 'question' %>
+</div>
+
+<%= will_paginate @questions %>

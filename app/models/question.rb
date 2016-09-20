@@ -9,7 +9,7 @@ class Question < ActiveRecord::Base
     if search
       where("a_answer LIKE :search OR b_answer LIKE :search", search: "%#{search}%")
     else
-      all
+      where(nil)
     end
   end
 end
